@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<robot name="webcam_robot">
+
+<link name="world"/>
+
+  <joint name="world_to_base" type="fixed">
+    <parent link="world"/>
+    <child link="robot_base"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+<link name="robot_base">
+    <visual>
+      <geometry>
+        <box size="1 1 1"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.5"/>
+      <material name="blue">
+        <color rgba="0 0 .8 1"/>
+      </material>
+    </visual>
+</link>
+	
+<joint name="base_to_servo" type="fixed">
+    <parent link="robot_base"/>
+    <child link="servo"/>
+    <origin xyz="0 0 0"/>
+</joint>
+
+<link name="servo">
+    <visual>
+      <geometry>
+        <cylinder length="0.4" radius="0.2"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 1"/>
+     <material name="yellow">
+        <color rgba="0.8 0.8 0 1"/>
+     </material>
+    </visual>
+</link>
+
+<joint name="servo_to_webcam" type="continuous">
+    <parent link="servo"/>
+    <child link="webcam"/>
+    <origin xyz="0 0 0"/>
+    <axis xyz="0 0 1"/>
+</joint>
+
+<link name="webcam">
+    <visual>
+      <geometry>
+        <sphere radius="0.2"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 1.2"/>
+      <material name="white">
+        <color rgba="1 1 1 1"/>
+     </material>
+    </visual>
+</link>
+
+<joint name="webcam_to_optica" type="fixed">
+    <parent link="webcam"/>
+    <child link="optica"/>
+    <origin xyz="0 0 0"/>
+</joint>
+
+<link name="optica">
+    <visual>
+      <geometry>
+        <sphere radius="0.05"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0.1 0.1 1.3"/>
+      <material name="blue">
+        <color rgba="0 0 .8 1"/>
+     </material>
+    </visual>
+</link>
+
+</robot>
